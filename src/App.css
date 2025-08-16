@@ -62,7 +62,7 @@ body {
   background: rgb(79, 45, 24);
 }
 .tar{
-  background-color: rgb(162, 162, 162);
+  background-color: rgb(147, 156, 126);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   width: 170px;
@@ -71,6 +71,8 @@ body {
   border-color: black;
   text-shadow: 3px 1px 2px black;
   font-size: 65px;
+   font-family: 'Digital-7', monospace;
+   color: rgb(255, 255, 255);
   
 }
 .btn1 {
@@ -121,4 +123,12 @@ from{
 to{
   transform: translateY(0px);
 }
+}
+@font-face {
+  font-family: 'Digital-7';
+  src: url('./fonts/Digital-7.ttf') format('truetype');
+}
+
+.digital-number {
+  font-family: 'Digital-7', monospace;
 }
