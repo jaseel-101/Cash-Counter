@@ -82,15 +82,15 @@ function App() {
 
   return (
     <div>
-      <div style={{ fontSize: "50px",fontFamily:"'Montserrat',san-serif"}}>Cash Counter</div>
+      <div className='intro' style={{ fontSize: "50px",fontFamily:"'Montserrat',san-serif"}}>Cash Counter</div>
       <div className='shad'style={{ backgroundColor: color , borderRadius: "20px", display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <p style={{ fontSize: "20px",fontFamily:"'Montserrat',san-serif",margin:2}}>Target Amount: <span style={{fontSize:"40px",color:"Yellow"}}>{target}</span></p>
+        <p style={{ fontSize: "20px",fontFamily:"'Montserrat',san-serif",margin:2}}>Target Amount: <span style={{fontSize:"40px",color:"Yellow"}}>{target}</span> Rupees</p>
         <p className='tar' style={{ margin:2 }}>{count}</p>
         <div style={{padding:"10px"}} >
 
           <span style={{padding:"10px"}}>
 
-            <button className="btn" style={{  color: "black" }} onClick ={adder2} disabled={onoff}>
+            <button className={`btn ${onoff ? 'disabled' : ''}`} style={{  color: "black" }} onClick ={adder2} disabled={onoff}>
 
               2 Rupees
 
@@ -100,7 +100,7 @@ function App() {
 
           </span>
           <span style={{padding:"10px"}}>
-            <button style={{  color: "black" }} onClick={adder1} disabled={onoff} className='btn'>
+            <button style={{  color: "black" }} onClick={adder1} disabled={onoff} className={`btn ${onoff ? 'disabled' : ''}`}>
 
               5 Rupees
 
@@ -112,7 +112,7 @@ function App() {
 
           <span style={{padding:"10px"}}>
 
-            <button style={{ color: "black" }} onClick={adder3} disabled={onoff} className='btn'>
+            <button style={{ color: "black" }} onClick={adder3} disabled={onoff} className={`btn ${onoff ? 'disabled' : ''}`}>
 
               1 Rupees
 

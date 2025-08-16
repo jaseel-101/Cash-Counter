@@ -41,7 +41,7 @@
   color: #888;
 }
   .btn {
-  background: rgb(238, 255, 160);
+  background: rgb(255, 225, 116);
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -52,6 +52,11 @@
   
   transform: scale(1.2);
   background-color: rgb(255, 255, 255);
+}
+.btn.disabled:hover {
+  background-color: white;  /* keep original */
+  transform: none;          /* remove scale */
+  cursor: not-allowed;      /* optional */
 }
 body {
   background: rgb(79, 45, 24);
@@ -89,4 +94,31 @@ body {
 .shad{
 
   box-shadow: 10px 2px 5px rgba(0, 0, 0, 0.3);
+    animation-name: fade;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.intro{
+  animation-name: oppfade;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes fade {
+from{
+  transform: translateY(-150px);
+}  
+to{
+  transform: translateY(0px);
+}
+}
+
+@keyframes oppfade {
+from{
+  transform: translateY(150px);
+}  
+to{
+  transform: translateY(0px);
+}
 }
