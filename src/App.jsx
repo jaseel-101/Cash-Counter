@@ -73,7 +73,7 @@ function App() {
     setCount(0);
     setMessage("");
     setColor("orange");
-    setTarget(Math.floor(Math.random()*51)+0)
+    setTarget(Math.floor(Math.random()*50)+1)
     setOnoff(false);
   }
 
