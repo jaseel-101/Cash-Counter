@@ -84,7 +84,7 @@ function App() {
     <div>
       <div style={{ fontSize: "50px",fontFamily:"'Montserrat',san-serif"}}>Cash Counter</div>
       <div className='shad'style={{ backgroundColor: color , borderRadius: "20px", display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <p style={{ fontSize: "20px",fontFamily:"'Montserrat',san-serif",margin:2}}>Target Amount: <span style={{fontSize:"40px",color:"red"}}>{target}</span></p>
+        <p style={{ fontSize: "20px",fontFamily:"'Montserrat',san-serif",margin:2}}>Target Amount: <span style={{fontSize:"40px",color:"Yellow"}}>{target}</span></p>
         <p className='tar' style={{ margin:2 }}>{count}</p>
         <div style={{padding:"10px"}} >
 
