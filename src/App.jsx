@@ -1,141 +1,121 @@
-import { useState, useRef } from 'react';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+if (performance.navigation.type === 1) {
+  window.location.href = "/";
+}
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState} from "react";
+import Gameover from "./gameover";
+import Game from "./game";
+import Startgame from "./Startgame";
 
 
-function App() {
+export default function App(){
+
   const [count, setCount] = useState(0)
-  const [target, setTarget] =useState(Math.floor(Math.random()*50)+1)
-  const [message, setMessage] = useState("");
-  const [color, setColor] = useState("orange");
-  const clickAudio = useRef(new Audio("/click.mp3"));
-  const errorAud = useRef(new Audio("/error.mp3"));
-  const correctAud = useRef(new Audio("/correct.mp3"));
-  const [onoff,setOnoff] = useState(false);
-  
-  
-  function adder1(){
+    const [target, setTarget] = useState(Math.floor(Math.random() * 50) + 1)
+    const [message, setMessage] = useState("");
+    const [failmessage, setFailmessage] = useState("");
+    const [color, setColor] = useState("orange");
+    const [onoff, setOnoff] = useState(false);
+    const [timercount, setTimercount] = useState(30);
+    const [score, setScore] = useState(0);
+    const [next, setNext] = useState("Reset");
+    const [failcount, setFailcount] = useState(15);
+    const[scoreplus,setScoreplus] = useState("");
+    const[clickscore,setClickscore] = useState(2);
+    const [displayclick,setDisplayclick] = useState(0);
 
-   setCount(count+5);
-   clickAudio.current.play();
-   
-
-  }
-   function adder2(){
-
-   setCount(count+2);
-   clickAudio.current.play();
-
-  }
-  function adder3(){
-
-   setCount(count+1);
-   clickAudio.current.play();
-
-  }
-  function check(){
-
-    if(target==count){
-
-      setMessage("You Are Correct");
-      setColor("green");
-      
-      correctAud.current.play();
-      setOnoff(true);
-      
-
-     
-
-
-       
-       
-       
-       
-    }
-    else{
-      setMessage("You Are Wrong");
-      setColor("red");
-       errorAud.current.play();
-       setOnoff(true);
-      
-      
-      
-    }
-    
-    
-    
-    
-    
-  }
-
-  function reset(){
+    function reset() {
     setCount(0);
     setMessage("");
     setColor("orange");
-    setTarget(Math.floor(Math.random()*50)+1)
+    setTarget(Math.floor(Math.random() * 50) + 1)
     setOnoff(false);
+    if (next == "Retry") {
+      setNext("Reset");
+      setScore(0);
+    }
+    setFailmessage("");
   }
 
-
+  function resetscore(){
+    setScore(0);
+  }
+    
+ 
 
 
   return (
-    <div>
-      <div className='intro' style={{ fontSize: "50px",fontFamily:"'Montserrat',san-serif"}}>Cash Counter</div>
-      <div className='shad'style={{ backgroundColor: color , borderRadius: "20px", display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <p style={{ fontSize: "20px",fontFamily:"'Montserrat',san-serif",margin:2}}>Target Amount: <span style={{fontSize:"40px",color:"Yellow"}}>{target}</span> Rupees</p>
-        <p className='tar' style={{ margin:2 }}>{count}</p>
-        <div style={{padding:"10px"}} >
+    <BrowserRouter basename="/Cash-Counter">
 
-          <span style={{padding:"10px"}}>
+    
 
-            <button className={`btn ${onoff ? 'disabled' : ''}`} style={{  color: "black" }} onClick ={adder2} disabled={onoff}>
+  
+      <Routes>
+        
 
-              2 Rupees
+        {/*Main game*/}
+        <Route path="/game" element= {<Game
 
-            </button>
+        count={count}
+              setCount={setCount}
+              target={target}
+              setTarget={setTarget}
+              message={message}
+              setMessage={setMessage}
+              failmessage={failmessage}
+              setFailmessage={setFailmessage}
+              color={color}
+              setColor={setColor}
+              onoff={onoff}
+              setOnoff={setOnoff}
+              timercount={timercount}
+              setTimercount={setTimercount}
+              score={score}
+              setScore={setScore}
+              next={next}
+              setNext={setNext}
+              failcount={failcount}
+              setFailcount={setFailcount}
+              scoreplus={scoreplus}
+              setScoreplus={setScoreplus}
+              clickscore={clickscore}
+              setClickscore={setClickscore}
+              displayclick={displayclick}
+              setDisplayclick={setDisplayclick}
+              reset={reset}
+             
+        
+        
+        
+        
+        
+        />
+        }
+        />
+        {/*gameover*/}
+        <Route path="/gameover" element= { <Gameover score={score} reset={reset} resetscore={resetscore}/>}/>
 
 
 
-          </span>
-          <span style={{padding:"10px"}}>
-            <button style={{  color: "black" }} onClick={adder1} disabled={onoff} className={`btn ${onoff ? 'disabled' : ''}`}>
+          {/*startgame*/}
+          <Route path="/" element={ <Startgame />} />
 
-              5 Rupees
+      </Routes>
 
-            </button>
-
-
-
-          </span>
-
-          <span style={{padding:"10px"}}>
-
-            <button style={{ color: "black" }} onClick={adder3} disabled={onoff} className={`btn ${onoff ? 'disabled' : ''}`}>
-
-              1 Rupees
-
-            </button>
-          </span>
-          <div style={{padding:"10px" }}>
-
-          <button className='btn1' style={{borderStyle:"solid", borderWidth:"2px", borderColor:"white" ,color:"black"}} onClick={check} hidden={onoff}>check</button>
-          
-          
-          </div>
-          <button className='btn1' style={{borderStyle:"solid", borderWidth:"2px", borderColor:"white" , color:"black"}} onClick={reset}> reset</button>
-          <p style={{fontSize:"30px" , fontFamily:"'Montserrat',san-serif"}}>{message}</p>
-          
+      
 
 
 
 
-        </div>
 
-      </div>
-    </div>
-  )
+
+
+ 
+    
+    </BrowserRouter>
+
+
+  );
 }
 
-export default App
